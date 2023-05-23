@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="css/dining.css" rel="stylesheet" />
+	<script type="text/javascript" src="../Index/js/scrolloverflow.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../Index/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../Index/css/bootswatch.css" />
+   	<script type="text/javascript" src="../Index/js/jquery.fullPage.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		$('#fullpage').fullpage({
+    			sectionsColor: ['#00000'],
+    			anchors: ['anime'],
+    			menu: '#menu',
+    			easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
+    		});
+    	});
+      </script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	    <a class="navbar-brand" href="../Index/index.html#firstPage">Operationg System Simulator</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>         
+
+	    <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="../Index/index.html#secondPage">Process Scheduling<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Disk/disk.html">Disk Scheduling</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Banker's Algorithm</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Index/index.html#5thpage">Process Synchronization</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Index/index.html#6thpage">Page Replacement</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Index/index.html#7thpage">File Management</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Index/about.html">About</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div id="fullpage">
+		<div class="section " id="section0">
+			<div class="container">
+		        <div class="jumbotron">
+		            <h1 class="display-3">Simulation of Dining Philosophers Problem</h1>
+		            <p class="lead">A classical problem to demonstrate the programming of concurrent or parallel processes</p>
+		            <hr class="my-4">
+		            <p>Consider five philosophers seated around a circular table, who spend their lives just thinking and eating. The table has a plate of spaghetti. However, there are only five chopsticks available. Each philosopher thinks. When he gets hungry, he picks up the two chopsticks that are closest to him. If a philosopher can pick up both chopsticks, he eats for a while. After a philosopher finishes eating, he puts down the chopsticks and starts to think.</p>
+		            <p class="lead">
+		              <a class="btn btn-success" href="#" role="button">Wiki</a>
+		            </p>
+		            <p class="lead">
+		              <a class="btn btn-success" href="dining.html#anim" role="button">Play</a>
+		            </p>
+		        </div>
+	        <br>
+	    	</div>
+		</div>
+		<div class="section" id="section1">
+			<div class="container" id="anim">
+				<img id="table" src="includes/table.jpg" >
+				<img id="food" src="includes/noodles.jpg" >
+				
+				<button type="button" class="next" onclick="simulate()">Next</button>
+				
+				<div>
+					<img id="phil1" src="includes/thinking.jpg" >
+					<img id="phil2" src="includes/thinking.jpg" >
+					<img id="phil3" src="includes/thinking.jpg" >
+					<img id="phil4" src="includes/thinking.jpg" >
+					<img id="phil5" src="includes/thinking.jpg" >
+				</div>
+				
+				<div id="c4"></div>
+				<div id="c0"></div>
+				<div id="c1"></div>
+				<div id="c2"></div>
+				<div id="c3"></div>
+				
+				<img id="think" src="includes/thinking.jpg" align="right"><div id="thinkt">Thinking</div>
+				<img id="hungry" src="includes/hungry.jpg" align="right"><div id="hungryt">Hungry</div>
+				<img id="eating" src="includes/eating.jpg" align="right"><div id="eatingt">Eating</div>
+				
+				<div id="p1">Philosopher 1</div>
+				<div id="p2">Philosopher 2</div>
+				<div id="p3">Philosopher 3</div>
+				<div id="p4">Philosopher 4</div>
+				<div id="p5">Philosopher 5</div>
+
+				<div id="random">Random number generated : 0</div>
+				
+				<p id="ph1">Philosopher 1 - Thinking</p>
+				<p id="ph2">Philosopher 2 - Thinking</p>
+				<p id="ph3">Philosopher 3 - Thinking</p>
+				<p id="ph4">Philosopher 4 - Thinking</p>
+				<p id="ph5">Philosopher 5 - Thinking</p>
+			</div>
+		</div>
+	<script>
+	
+		var phil = [0,0,0,0,0], chopsticks = [0,0,0,0,0];
+
+		function simulate() 
+		{
+			var n = Math.floor((Math.random() * 5) + 1);
+		
+			document.getElementById("random").innerHTML = "Random number generated : "+n;
+			if(phil[n-1]==0)
+			{
+				phil[n-1] = 1;
+				document.getElementById("phil"+n).src = "includes/hungry.jpg";
+				document.getElementById("ph"+n).innerHTML = "Philosopher " + n + " - Hungry";
+			}
+			else if(phil[n-1]==1)
+			{
+				if(chopsticks[n-1]==0 && chopsticks[n%5]==0)
+				{
+					chopsticks[n-1]=1;
+					chopsticks[n%5]=1;
+					phil[n-1] = 2;
+					document.getElementById("phil"+n).src = "includes/eating.jpg";
+					document.getElementById("c"+(n+1)%5).style.display = "none";
+					document.getElementById("c"+(n)%5).style.display = "none";
+					document.getElementById("ph"+n).innerHTML = "Philosopher " + n + " - Eating";
+				}
+				else
+				{
+					alert("Philosopher " + n + " cannot eat now!");
+				}
+			}
+			else if(phil[n-1]==2)
+			{
+					chopsticks[n-1]=0;
+					chopsticks[n%5]=0;
+					phil[n-1] = 0;
+					document.getElementById("phil"+n).src = "includes/thinking.jpg";
+					document.getElementById("c"+n%5).style.display = "block";
+					document.getElementById("c"+(n+1)%5).style.display = "block";
+					document.getElementById("ph"+n).innerHTML = "Philosopher " + n + " - Thinking";
+			}
+		}
+	
+	</script>
+	
+</body>
+
+</html>

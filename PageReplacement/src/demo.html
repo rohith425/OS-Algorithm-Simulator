@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Replacement Demo</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../../Index/css/bootswatch.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<style>
+
+</style>
+<body style="padding:50px;">
+  <div class="panel panel-primary">
+      <div class="panel-heading" style="background-color:#000000"><h1 style="text-alig var text = JSON.strn:center;">
+        PAGE REPLACEMENT ALGORITHMS
+      </h1></div>
+  <br>
+  <div class="panel-body">
+  <div id="input">
+    <h4 >Requests string:</h4>
+    <form>
+     <input type="text" class="requests form-control" id="request_string" placeholder="Enter requests string" />
+     <h4 >Cache Size:</h4>
+      <input type="text" class="size form-control" id="csize" placeholder="Enter cache size" /><br\>
+      <input type="button" value="submit" onclick="myfunction()"/>
+    </form>
+    </div>
+  </div>
+</div>
+
+  <div>
+  <button class="button button1" onclick="fifo()">FIFO(First In First Out)</button>
+  <button class="button button2" onclick="lru()">LRU(Least Recently Used)</button>
+  <button class="button button3" onclick="optimal()">Optimal</button>
+</div>
+<script src=index.js></script>
+</body>
+</html>
+
+
+<style>
+.tab-content,.nav nav-tabs{
+  padding:30px;
+}
+
+#result{
+  margin-top: 25px;
+}
+
+#input{
+  margin: 10px;
+}
+.card{
+  position: relative;
+  border: 1px solid black;
+  float: left;
+  text-align: center;
+  width:100px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+.request{
+  border-bottom:  1px solid black;
+  margin-bottom: 10px;
+}
+
+.hitmiss{
+  margin-top: 10px;
+  border-top: 1px solid black;
+  color: white;
+}
+.hit{
+  background-color: green;
+}
+.miss{
+  background-color: red;
+}
+
+.status{
+  color: black;
+}
+.hidden{
+  display:none;
+}
+
+#answers{
+  display:block;
+  padding: 30px;
+}
+.ans{
+  text-transform: capitalize;
+}
+.nav.nav-tabs{
+  margin-left:10px;
+}
+h1{
+  text-align: center;
+}
+#csize{
+  width: 300px;
+  position: relative;
+  float:left;
+}
+#submit{
+  margin-left: 10px;
+}
+.proceed{
+  float: right;
+  margin-right: 10px;
+}
+
+.button1 {background-color: #555555;}
+.button2 {background-color: #555555;}
+.button3 {background-color: #555555;}
+</style>
